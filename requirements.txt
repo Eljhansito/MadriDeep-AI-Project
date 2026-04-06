@@ -1,0 +1,8 @@
+streamlit
+pandas
+numpy
+joblib
+groq
+mlflow
+scikit-learn
+tensorflow-cpu
