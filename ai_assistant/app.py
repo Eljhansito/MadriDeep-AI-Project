@@ -29,7 +29,7 @@ st.markdown("""
 # ==========================================
 
 @st.cache_resource
-def cargar_recursos():
+def cargar_re
     try:
         base_dir = os.path.dirname(os.path.abspath(__file__))
         prep = joblib.load(os.path.join(base_dir, '../tools/preprocessor.joblib'))
