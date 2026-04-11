@@ -13,9 +13,10 @@ def buy_model_selector():
     if buy_model_name == "buy_model_ML.joblib":
         model = joblib.load(os.path.join(base_dir, "../models/buy_model_ML.joblib"))
     else:
+        buy_model_name = "modelo_compras_dl.keras"
         model = tf.keras.models.load_model(os.path.join(base_dir, "../models/modelo_compras_dl.keras"))
 
-    return model
+    return model, buy_model_name
 
 def rent_model_selector():
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +29,7 @@ def rent_model_selector():
     if rent_model_name == "rent_model_ML.joblib":
         model = joblib.load(os.path.join(base_dir, "../models/rent_model_ML.joblib"))
     else:
+        rent_model_name = "modelo_alquiler_dl.keras"
         model = tf.keras.models.load_model(os.path.join(base_dir, "../models/modelo_alquiler_dl.keras"))
 
-    return model
+    return model, rent_model_name

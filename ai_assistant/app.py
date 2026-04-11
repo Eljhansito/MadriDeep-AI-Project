@@ -33,8 +33,8 @@ def cargar_recursos():
     try:
         base_dir = os.path.dirname(os.path.abspath(__file__))
         prep = joblib.load(os.path.join(base_dir, '../tools/preprocessor.joblib'))
-        mod_buy = buy_model_selector()
-        mod_rent = rent_model_selector()
+        mod_buy = buy_model_selector()[0]
+        mod_rent = rent_model_selector()[0]
         return prep, mod_buy, mod_rent, True
     except Exception as e:
         st.error(f"Error cargando modelos: {e}")
@@ -170,10 +170,16 @@ def extraer_y_predecir(texto_anuncio):
         datos_procesados = preprocessor.transform(df_para_predecir)
         
         # Keras devuelve arrays 2D tipo [[valor]], por eso usamos [0][0]
-        pred_compra_log = m_buy.predict(datos_procesados, verbose=0)[0][0]
-        precio_compra = np.exp(pred_compra_log) # Asumiendo que compra usa logaritmo
+        if buy_model_selector()[1] == "buy_model_ML.joblib":
+            pred_compra_log = m_buy.predict(datos_procesados)[0] ## Aqui
+            precio_compra = np.exp(pred_compra_log) # Asumiendo que compra usa logaritmo
         
-        precio_alquiler = m_rent.predict(datos_procesados, verbose=0)[0][0] # Asumiendo que alquiler no usa logaritmo
+            precio_alquiler = m_rent.predict(datos_procesados)[0] # Asumiendo que alquiler no usa logaritmo
+        else:
+            pred_compra_log = m_buy.predict(datos_procesados)[0][0] ## Aqui
+            precio_compra = np.exp(pred_compra_log) # Asumiendo que compra usa logaritmo
+        
+            precio_alquiler = m_rent.predict(datos_procesados)[0][0] # Asumiendo que alquiler no usa logaritmo
         
         return diccionario_seguro, precio_compra, precio_alquiler
         
