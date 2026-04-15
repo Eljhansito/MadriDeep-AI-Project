@@ -18,8 +18,10 @@
 
 ### Consideraciones:
 - El proyecto se ha probado en python 3.11.
-- Se ha usado el gestor de proyectos **uv**. Para instalar las dependencias basta con instalar uv y ejecutar el comando **uv sync** en el terminal con el entorno virtual activado.
+- Se ha usado el gestor de proyectos **uv**. Para instalar las dependencias basta con instalar uv y ejecutar el comando **uv sync** en el terminal con el entorno virtual activado. (Se debe haber ejecutado también el comando uv pip install -e .).
 - Para ejecutar en local se debe crear un directorio **.streamlit** y dentro del mismo debe crearse un archivo **secrets.toml** que contenga la GROQ API KEY creada en el website de Groq.
+- Para ejecución en local el comando desde el directorio raiz es **streamlit run ai_assistant/app.py**.
+
 - Se debe activar Git Large File para hacer push de archivos grandes. (Este fue el caso de los modelos de ML generados). [Git LFS](https://git-lfs.com/)
 
 
